@@ -4,7 +4,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeClass;
 
-public class BaseTest {
+public class Login {
     protected static String TOKEN;
 
     @BeforeClass

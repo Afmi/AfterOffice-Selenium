@@ -6,10 +6,10 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-public class RegisterLoginTest extends BaseTest {
+public class Register extends Login {
 
     @Test
-    public void testRegisterUser() {
+    public void RegisterUser() {
         RestAssured.baseURI = "https://whitesomehouse.com";
 
         String requestBody = "{" +
@@ -33,7 +33,7 @@ public class RegisterLoginTest extends BaseTest {
     }
 
     @Test
-    public void testLoginUser() {
+    public void LoginUser() {
         assertNotNull(TOKEN, "Login token should not be null");
     }
 
