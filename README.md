@@ -42,7 +42,9 @@ mvn test
 - `RegisterLoginTest.java` – Test register dan login user
 - `GetObjectsTest.java` – Test GET: semua object, object by ID, single object by UUID, list department
 - `PostObjectTest.java` – Test POST untuk menambahkan object baru
-- `PutPatchDeleteTest.java` – Test PUT, PATCH, dan DELETE object
+- `Put.java` – Test PUT untuk pembaruan object baru
+- `Patch.java` – Test PATCH untuk pembaruan parsial object
+- `Delete.java` – Test DELETE untuk menghapus object
 
 ---
 
@@ -50,25 +52,5 @@ mvn test
 Token login akan otomatis diambil dari endpoint `/login` dan digunakan pada semua test yang membutuhkan header `Authorization: Bearer <token>`.
 
 ---
-
-## 📁 Struktur Folder
-
-```
-Rest-Assured-TestNG/
-├── pom.xml
-├── testng.xml
-├── README.md
-└── src
-    └── test
-        └── java
-            └── com
-                └── example
-                    └── api
-                        ├── BaseTest.java
-                        ├── RegisterLoginTest.java
-                        ├── GetObjectsTest.java
-                        ├── PostObjectTest.java
-                        └── PutPatchDeleteTest.java
-```
 
 ---
