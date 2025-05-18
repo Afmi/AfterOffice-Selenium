@@ -41,7 +41,7 @@
                 <version>3.1.2</version>
                 <configuration>
                     <includes>
-                        <include>**/*Test.java</include>
+                        <include>testng.xml</include>
                     </includes>
                 </configuration>
             </plugin>

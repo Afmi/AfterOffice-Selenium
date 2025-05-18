@@ -6,6 +6,8 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
+import java.util.List;
+
 public class Put extends Login {
 
         @Test
@@ -34,6 +36,10 @@ public class Put extends Login {
                                 .extract().response();
 
                 assertEquals(response.statusCode(), 200);
+                List<Object> objects = response.jsonPath().getList("$");
+                assertNotNull(objects, "List objek tidak boleh null");
+                assertTrue(objects.size() > 0, "Harus ada setidaknya 1 objek");
+                System.out.println(response.getBody().asPrettyString());
         }
 
 }

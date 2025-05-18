@@ -2,6 +2,12 @@ package com.example.api;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
+
+import java.util.List;
+
 import org.testng.annotations.BeforeClass;
 
 public class Login {
@@ -23,5 +29,8 @@ public class Login {
                 .extract().response();
 
         TOKEN = response.jsonPath().getString("token");
+        List<Object> objects = response.jsonPath().getList("$");
+        assertNotNull(objects, "List objek tidak boleh null");
+        assertTrue(objects.size() > 0, "Harus ada setidaknya 1 objek");
     }
 }

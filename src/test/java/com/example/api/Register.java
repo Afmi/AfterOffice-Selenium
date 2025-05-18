@@ -6,6 +6,8 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
+import java.util.List;
+
 public class Register extends Login {
 
     @Test
@@ -30,6 +32,10 @@ public class Register extends Login {
 
         assertEquals(response.statusCode(), 200);
         assertTrue(response.asString().contains("success") || response.asString().contains("registered"));
+        List<Object> objects = response.jsonPath().getList("$");
+        assertNotNull(objects, "List objek tidak boleh null");
+        assertTrue(objects.size() > 0, "Harus ada setidaknya 1 objek");
+        System.out.println(response.getBody().asPrettyString());
     }
 
     @Test

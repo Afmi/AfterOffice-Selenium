@@ -7,6 +7,8 @@ import io.restassured.response.Response;
 
 import static org.testng.Assert.*;
 
+import java.util.List;
+
 public class Patch extends Login {
 
     @Test
@@ -28,5 +30,9 @@ public class Patch extends Login {
                 .extract().response();
 
         assertEquals(response.statusCode(), 200);
+        List<Object> objects = response.jsonPath().getList("$");
+        assertNotNull(objects, "List objek tidak boleh null");
+        assertTrue(objects.size() > 0, "Harus ada setidaknya 1 objek");
+        System.out.println(response.getBody().asPrettyString());
     }
 }

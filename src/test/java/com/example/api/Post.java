@@ -6,6 +6,8 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
+import java.util.List;
+
 public class Post extends Login {
 
     @Test
@@ -35,5 +37,9 @@ public class Post extends Login {
 
         assertEquals(response.statusCode(), 200);
         assertTrue(response.asString().contains("Apple MacBook Pro"));
+        List<Object> objects = response.jsonPath().getList("$");
+        assertNotNull(objects, "List objek tidak boleh null");
+        assertTrue(objects.size() > 0, "Harus ada setidaknya 1 objek");
+        System.out.println(response.getBody().asPrettyString());
     }
 }
