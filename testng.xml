@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="RestAssured API Test Suite">
+    <test name="API Tests">
+        <classes>
+            <class name="com.example.api.RegisterLogin"/>
+            <class name="com.example.api.GetObjects"/>
+            <class name="com.example.api.PostObject"/>
+            <class name="com.example.api.Put"/>
+            <class name="com.example.api.Patch"/>
+            <class name="com.example.api.Delete"/>
+        </classes>
+    </test>
+</suite>
