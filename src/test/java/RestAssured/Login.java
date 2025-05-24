@@ -1,4 +1,4 @@
-package com.example.api;
+package RestAssured;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;

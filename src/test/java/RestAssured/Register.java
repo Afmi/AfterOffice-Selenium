@@ -1,4 +1,4 @@
-package com.example.api;
+package RestAssured;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -15,8 +15,8 @@ public class Register extends Login {
         RestAssured.baseURI = "https://whitesomehouse.com";
 
         String requestBody = "{" +
-                "\"email\" : \"afmiruri@gmail.com\"," +
-                "\"full_name\" : \"Afmi Ruri\"," +
+                "\"email\" : \"albertsimanjuntak12@gmail.com\"," +
+                "\"full_name\" : \"Albert Simanjuntak\"," +
                 "\"password\" : \"P@ssw0rd\"," +
                 "\"departement\" : \"manager\"," +
                 "\"phone_number\" : \"08212345345\"," +

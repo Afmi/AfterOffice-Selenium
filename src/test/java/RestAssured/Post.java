@@ -1,35 +1,42 @@
-package com.example.api;
-
-import org.testng.annotations.Test;
+package RestAssured;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
 import java.util.List;
 
-public class Patch extends Login {
+public class Post extends Login {
 
     @Test
-    public void testPatchObject() {
+    public void testAddObject() {
         RestAssured.baseURI = "https://whitesmokehouse.com";
 
         String body = "{" +
-                "\"name\": \"Apple MacBook Pro 1611-albert12\"," +
-                "\"year\": \"2030\"" +
-                "}";
+                "\"name\": \"Apple MacBook Pro 16\"," +
+                "\"data\": {" +
+                "\"year\": 2019," +
+                "\"price\": 1849.99," +
+                "\"cpu_model\": \"Intel Core i9\"," +
+                "\"hard_disk_size\": \"1 TB\"," +
+                "\"capacity\": \"2 cpu\"," +
+                "\"screen_size\": \"14 Inch\"," +
+                "\"color\": \"red\"" +
+                "}}";
 
         Response response = RestAssured
                 .given()
                 .header("Authorization", "Bearer " + TOKEN)
                 .contentType("application/json")
                 .body(body)
-                .patch("/webhook/39a0f904-b0f2-4428-80a3-391cea5d7d04/api/object/12")
+                .post("/webhook/api/objects")
                 .then()
                 .extract().response();
 
         assertEquals(response.statusCode(), 200);
+        assertTrue(response.asString().contains("Apple MacBook Pro"));
         List<Object> objects = response.jsonPath().getList("$");
         assertNotNull(objects, "List objek tidak boleh null");
         assertTrue(objects.size() > 0, "Harus ada setidaknya 1 objek");

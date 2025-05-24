@@ -1,4 +1,4 @@
-package com.example.api;
+package RestAssured;
 
 import org.testng.annotations.Test;
 
