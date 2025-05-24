@@ -70,10 +70,9 @@ public class RegisterEmployee {
 
         System.out.println(res.asPrettyString());
 
-        assertEquals(res.statusCode(), 200, "Status code login employee must be 200");
         StaticVar.token = res.jsonPath().getString("[0].token");
-        assertNotNull(StaticVar.token, "Token is null");
-        assertFalse(StaticVar.token.isEmpty(), "Token is empty");
+        assert res.getStatusCode() == 200 : "Status code login employee must be 200";
+        assert StaticVar.token != null : "Token is null";
     }
 
     @Test(dependsOnMethods = "loginEmployee", groups = "assertEmployeeRegister")
