@@ -6,15 +6,13 @@ import io.restassured.response.Response;
 import org.testng.annotations.Test;
 import pojo.UpdateRequest;
 
-import static org.testng.Assert.assertEquals;
-
 public class UpdateEmployee {
 
     @Test(dependsOnGroups = "assertEmployeeRegister")
     public void UpdateEmployee() throws Exception {
         // System.out.println("UpdateEmployee running...");
 
-        StaticVar.email = "budi-update1@mail.com";
+        StaticVar.email = "budi-1@mail.com";
         StaticVar.password = "password";
         StaticVar.fullName = "Budi";
         StaticVar.department = "Finance";
@@ -40,11 +38,11 @@ public class UpdateEmployee {
 
         System.out.println(res.asPrettyString());
 
-        assertEquals(res.getStatusCode(), 200, "Status code update employee must be 200");
-        assertEquals(res.jsonPath().getString("[0].email"), StaticVar.email);
-        assertEquals(res.jsonPath().getString("[0].full_name"), StaticVar.fullName);
-        assertEquals(res.jsonPath().getString("[0].department"), StaticVar.department);
-        assertEquals(res.jsonPath().getString("[0].title"), StaticVar.title);
+        assert res.getStatusCode() == 200 : "Status code update employee must be 200";
+        assert res.jsonPath().get("[0].email").toString().equals(StaticVar.email);
+        assert res.jsonPath().get("[0].full_name").toString().equals(StaticVar.fullName);
+        assert res.jsonPath().get("[0].department").toString().equals(StaticVar.department);
+        assert res.jsonPath().get("[0].title").toString().equals(StaticVar.title);
     }
 
     @Test(dependsOnMethods = "UpdateEmployee", groups = "assertEmployeeUpdate")

@@ -7,8 +7,6 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import pojo.LoginRequest;
 import pojo.RegisterRequest;
-import pojo.RegisterResponse;
-
 import static org.testng.Assert.*;
 
 public class RegisterEmployee {
@@ -16,7 +14,7 @@ public class RegisterEmployee {
     public void beforeSuite() {
         // System.out.println("Suite E2E running...");
 
-        StaticVar.email = "Budi1@mail.com";
+        StaticVar.email = "Budi@mail.com";
         StaticVar.password = "password";
         StaticVar.fullName = "Budi";
         StaticVar.department = "Finance";
@@ -48,11 +46,11 @@ public class RegisterEmployee {
 
         assertEquals(res.statusCode(), 200, "Status code add employee must be 200");
 
-        RegisterResponse[] responseBody = mapper.readValue(res.asString(), RegisterResponse[].class);
-        assertEquals(responseBody[0].email, StaticVar.email);
-        assertEquals(responseBody[0].full_name, StaticVar.fullName);
-        assertEquals(responseBody[0].department, StaticVar.department);
-        assertEquals(responseBody[0].title, StaticVar.title);
+        assert res.getStatusCode() == 200 : "Status code add employee must be 200";
+        assert res.jsonPath().get("[0].email").toString().equals(StaticVar.email);
+        assert res.jsonPath().get("[0].full_name").toString().equals(StaticVar.fullName);
+        assert res.jsonPath().get("[0].department").toString().equals(StaticVar.department);
+        assert res.jsonPath().get("[0].title").toString().equals(StaticVar.title);
     }
 
     @Test(dependsOnMethods = "addEmployee")
@@ -91,10 +89,10 @@ public class RegisterEmployee {
 
         System.out.println(res.asPrettyString());
 
-        assertEquals(res.statusCode(), 200, "Status code search employee must be 200");
-        assertTrue(res.jsonPath().getString("[0].query").equals(StaticVar.fullName), "Query must match full name");
-        assertTrue(res.jsonPath().getString("[0].result.full_name").contains(StaticVar.fullName),
-                "Full name not matched");
+        assert res.getStatusCode() == 200 : "Status code search employee must be 200";
+        assert res.jsonPath().getString("[0].query").equals(StaticVar.fullName) : "Query must be same as fullname";
+        assert res.jsonPath().getString("[0].result.full_name").contains(StaticVar.fullName)
+                : "Fullname not expected, must contains " + StaticVar.fullName;
     }
 
     @Test(dependsOnMethods = "loginEmployee", groups = "assertEmployeeRegister")
@@ -109,7 +107,7 @@ public class RegisterEmployee {
 
         System.out.println(res.asPrettyString());
 
-        assertEquals(res.statusCode(), 200, "Status code get all employee must be 200");
+        assert res.getStatusCode() == 200 : "Status code get all employee must be 200";
 
         boolean dataIsFound = res.jsonPath().getList("full_name").contains(StaticVar.fullName);
         assertTrue(dataIsFound, "Data not found in system");

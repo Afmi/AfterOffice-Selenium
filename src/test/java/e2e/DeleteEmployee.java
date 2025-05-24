@@ -4,8 +4,6 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
-
 public class DeleteEmployee {
 
     @Test(dependsOnGroups = "assertEmployeeUpdate")
@@ -21,8 +19,7 @@ public class DeleteEmployee {
 
         System.out.println(res.asPrettyString());
 
-        assertEquals(res.statusCode(), 200, "Status code delete employee must be 200");
-        String message = res.jsonPath().getString("message");
-        assertEquals(message.toLowerCase(), "employee deleted successfully", "Message not matched");
+        assert res.getStatusCode() == 200 : "Status code add employee must be 200";
+        assert res.jsonPath().getBoolean("[0].success") == true : "Delete not success";
     }
 }
