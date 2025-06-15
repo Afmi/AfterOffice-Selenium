@@ -3,12 +3,7 @@
 <suite name="RestAssured API Test Suite">
     <test name="API Tests">
         <classes>
-            <class name="com.example.api.RegisterLogin"/>
-            <class name="com.example.api.GetObjects"/>
-            <class name="com.example.api.PostObject"/>
-            <class name="com.example.api.Put"/>
-            <class name="com.example.api.Patch"/>
-            <class name="com.example.api.Delete"/>
+            <class name="selenium.LocatorSuccessLoginScenario"/>
         </classes>
     </test>
 </suite>
