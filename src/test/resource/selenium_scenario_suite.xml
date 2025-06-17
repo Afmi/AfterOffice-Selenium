@@ -3,7 +3,7 @@
 <suite name="SeleniumScenarioSuite" verbose="5" parallel="true" thread-count="5">
   <test name="SeleniumScenario">
     <classes>
-      <class name="selenium_scenario.CheckoutFlowE2E"></class>
+      <class name="selenium_scenario.LocatorSuccessLoginScenario"></class>
     </classes>
   </test>
 </suite>
