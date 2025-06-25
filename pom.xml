@@ -4,8 +4,8 @@
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.example.api</groupId>
-    <artifactId>rest-assured-testng-api</artifactId>
+    <groupId>com.example.selenium</groupId>
+    <artifactId>selenium-cucumber-pom</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
@@ -16,54 +16,38 @@
             <version>4.19.1</version>
         </dependency>
 
-        <!-- TestNG -->
+        <!-- JUnit 4 for Cucumber -->
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.10.2</version>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
 
-        <!-- Optional: Rest Assured (untuk API testing jika diperlukan) -->
+        <!-- Cucumber Dependencies -->
         <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <version>5.3.1</version>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>7.15.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>7.15.0</version>
             <scope>test</scope>
-        </dependency>
-
-        <!-- Optional: JSON library -->
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20231013</version>
-        </dependency>
-
-        <!-- Optional: Cucumber reporting -->
-        <dependency>
-            <groupId>net.masterthought</groupId>
-            <artifactId>cucumber-reporting</artifactId>
-            <version>5.7.0</version>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Jalankan semua class TestNG dengan anotasi @Test -->
+            <!-- Jalankan tes JUnit (termasuk Cucumber runner) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
-                <configuration>
-                    <!-- Jika Anda punya testng.xml, bisa pakai ini -->
-                    <!-- Hapus bagian ini jika tidak menggunakan file testng.xml -->
-                    <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
-                    </suiteXmlFiles>
-                </configuration>
             </plugin>
 
-            <!-- Compiler Plugin -->
+            <!-- Java compiler plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
